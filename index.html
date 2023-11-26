@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Test App</h1>
+        <form id="quizForm">
+            <!-- Pregunta 1 -->
+            <div class="question">
+                <p>Pregunta 1: ¿Cuál es tu color favorito?</p>
+                <label><input type="radio" name="q1" value="a">a) Rojo</label>
+                <label><input type="radio" name="q1" value="b">b) Azul</label>
+                <label><input type="radio" name="q1" value="c">c) Verde</label>
+                <label><input type="radio" name="q1" value="d">d) Amarillo</label>
+            </div>
+
+            <!-- Repite el bloque anterior para las preguntas restantes -->
+
+            <button type="button" onclick="calcularResultado()">Obtener Resultado</button>
+        </form>
+
+        <div id="resultado" class="hidden">
+            <h2>Resultado</h2>
+            <p id="resultadoText"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
