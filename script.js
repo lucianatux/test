@@ -1,47 +1,123 @@
-function calcularResultado() {
-    // Obtener respuestas del formulario
-    const respuestas = {
-        q1: getRadioValue("q1"),
-        // Repite para las demás preguntas
-    };
-
-    // Calcular resultado
-    const resultado = calcularResultadoFinal(respuestas);
-
-    // Mostrar resultado en la página
-    mostrarResultado(resultado);
-}
-
-function getRadioValue(name) {
-    const radios = document.getElementsByName(name);
-    for (const radio of radios) {
-        if (radio.checked) {
-            return radio.value;
+const questions = [
+    {
+      question: "This is question 1",
+      options: {
+        a: "This is option a from question 1",
+        b: "This is option b from question 1",
+        c: "This is option c from question 1",
+        d: "This is option d from question 1",
+      },
+    },
+    {
+        question: "This is question 2",
+        options: {
+          a: "This is option a from question 2",
+          b: "This is option b from question 2",
+          c: "This is option c from question 2",
+          d: "This is option d from question 2",
+        },
+      },
+      {
+        question: "This is question 3",
+        options: {
+          a: "This is option a from question 3",
+          b: "This is option b from question 3",
+          c: "This is option c from question 3",
+          d: "This is option d from question 3",
         }
+      },
+      {
+        question: "This is question 4",
+        options: {
+          a: "This is option a from question 4",
+          b: "This is option b from question 4",
+          c: "This is option c from question 4",
+          d: "This is option d from question 4",
+        },
+      },
+      {
+        question: "This is question 5",
+        options: {
+          a: "This is option a from question 5",
+          b: "This is option b from question 5",
+          c: "This is option c from question 5",
+          d: "This is option d from question 5",
+        },
+      },
+      {
+        question: "This is question 6",
+        options: {
+          a: "This is option a from question 6",
+          b: "This is option b from question 6",
+          c: "This is option c from question 6",
+          d: "This is option d from question 6",
+        },
+      },
+    
+  ];
+  
+  const result = {
+    a: "This is result with most answers type a",
+    b: "This is result with most answers type b",
+    c: "This is result with most answers type c",
+    d: "This is result with most answers type d",
+  };
+  
+  const quizContainer = document.getElementById('quiz-container');
+  const resultContainer = document.getElementById('result-container');
+  const submitBtn = document.getElementById('submit-btn');
+
+// Function to render questions in the HTML
+function renderQuestions() {
+  questions.forEach((q, index) => {
+    const questionHTML = `
+      <div class="question">
+        <p>${q.question}</p>
+        ${renderOptions(q.options, index)}
+      </div>
+    `;
+    quizContainer.innerHTML += questionHTML;
+  });
+}
+
+// Function to render options for a question
+function renderOptions(options, questionIndex) {
+  let optionsHTML = "";
+  for (const [key, value] of Object.entries(options)) {
+    optionsHTML += `<label><input type="radio" name="q${questionIndex}" value="${key}">${value}</label><br>`;
+  }
+  return optionsHTML;
+}
+
+// Function to calculate and display the result
+function calculateResult() {
+  const answers = {};
+
+  questions.forEach((q, index) => {
+    const selectedAnswer = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selectedAnswer) {
+      const questionKey = selectedAnswer.value;
+      answers[questionKey] = (answers[questionKey] || 0) + 1;
     }
-    return null;
+  });
+
+  const maxAnswerCount = Math.max(...Object.values(answers));
+  const maxAnswers = Object.keys(answers).filter(key => answers[key] === maxAnswerCount);
+
+  if (maxAnswers.length === 1) {
+    // No tie, display the result for the single winner
+    resultContainer.textContent = result[maxAnswers[0]];
+  } else {
+    // Tie, display all tied results
+    const tiedResults = maxAnswers.map(answer => result[answer]);
+    resultContainer.textContent = `Tie! Results for tied options: ${tiedResults.join(', ')}`;
+  }
 }
 
-function calcularResultadoFinal(respuestas) {
-    // Implementa tu lógica para calcular el resultado basado en las respuestas
-    // Aquí hay un ejemplo simple basado en la mayoría de respuestas
-    const conteo = { a: 0, b: 0, c: 0, d: 0 };
+// Event listener for the submit button
+submitBtn.addEventListener('click', () => {
+  calculateResult();
+});
 
-    for (const pregunta in respuestas) {
-        const opcionElegida = respuestas[pregunta];
-        conteo[opcionElegida]++;
-    }
-
-    const resultado = Object.keys(conteo).reduce((a, b) => conteo[a] > conteo[b] ? a : b);
-
-    return resultado;
-}
-
-function mostrarResultado(resultado) {
-    const resultadoText = document.getElementById("resultadoText");
-    resultadoText.textContent = `Tu resultado es: ${resultado.toUpperCase()}`;
-
-    // Mostrar el resultado en la página
-    const resultadoDiv = document.getElementById("resultado");
-    resultadoDiv.classList.remove("hidden");
-}
+// Call the function to render questions
+renderQuestions();
