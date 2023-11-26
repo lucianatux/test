@@ -109,8 +109,9 @@ function calculateResult() {
     resultContainer.textContent = result[maxAnswers[0]];
   } else {
     // Tie, display all tied results
-    const tiedResults = maxAnswers.map(answer => result[answer]);
-    resultContainer.textContent = `Tie! Results for tied options: ${tiedResults.join(', ')}`;
+    const tiedResults = maxAnswers.map(answer => `<p>${result[answer]}</p>`);
+    resultContainer.innerHTML = `Tie! Results for tied options: ${tiedResults.join('')}`;
+  
   }
 }
 
