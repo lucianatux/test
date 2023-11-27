@@ -1,47 +1,65 @@
 const questions = [
     {
-      question: "This is question 1",
+      question: "Tipo de cuerpo",
       options: {
-        a: "This is option a from question 1",
-        b: "This is option b from question 1",
-        c: "This is option c from question 1",
-        d: "This is option d from question 1",
+        a: "Formas blandas, rostro triangular, torso ovalado",
+        b: "Formas redondas, rostro cuadrado, torso cuadrado",
+        c: "Formas redondas, rostro y torso redondo",
+        d: "Formas rectas, rostro triangulo invertido, torso rectangular",
       },
     },
     {
-        question: "This is question 2",
+        question: "Tono de piel",
         options: {
-          a: "This is option a from question 2",
-          b: "This is option b from question 2",
-          c: "This is option c from question 2",
-          d: "This is option d from question 2",
+          a: "Blancuzco",
+          b: "Rosado",
+          c: "Rosado claro",
+          d: "Oscuro",
         },
       },
       {
-        question: "This is question 3",
+        question: "Tipo de andar",
         options: {
-          a: "This is option a from question 3",
-          b: "This is option b from question 3",
-          c: "This is option c from question 3",
-          d: "This is option d from question 3",
+          a: "Lento y corto",
+          b: "Veloz y amplio",
+          c: "Lento y amplio",
+          d: "Veloz y corto",
         }
       },
       {
-        question: "This is question 4",
+        question: "Tipo de gestos",
         options: {
-          a: "This is option a from question 4",
-          b: "This is option b from question 4",
-          c: "This is option c from question 4",
-          d: "This is option d from question 4",
+          a: "Lentos y tranquilos",
+          b: "Veloces y abruptos",
+          c: "Armónicos",
+          d: "Veloces y pegados",
         },
       },
       {
-        question: "This is question 5",
+        question: "Forma de vestir",
         options: {
-          a: "This is option a from question 5",
-          b: "This is option b from question 5",
-          c: "This is option c from question 5",
-          d: "This is option d from question 5",
+          a: "Cuidadosa",
+          b: "Variable",
+          c: "Vistosa",
+          d: "Seria",
+        },
+      },
+      {
+        question: "Tipo de letra",
+        options: {
+          a: "Lenta, redondeada, pequeña, lineal, vertical",
+          b: "Veloz, angulosa, ascendente, vertical",
+          c: "Lenta, redondeada, grande, ondulante, destrogira",
+          d: "Veloz, angulosa, pequeña, decaída, replegada",
+        },
+      },
+      {
+        question: "Tipo de reacciones",
+        options: {
+          a: "Muy lenta para actuar, rápida para pensar y sentir",
+          b: "Lenta para pensar, muy rápida para actuar",
+          c: "Ni muy lenta ni muy rápida en general",
+          d: "Muy lenta para actuar, lenta para sentir, rápida para pensar",
         },
       },
       {
@@ -53,7 +71,15 @@ const questions = [
           d: "This is option d from question 6",
         },
       },
-    
+      {
+        question: "This is question 6",
+        options: {
+          a: "This is option a from question 6",
+          b: "This is option b from question 6",
+          c: "This is option c from question 6",
+          d: "This is option d from question 6",
+        },
+      },
   ];
   
   const result = {
@@ -74,6 +100,8 @@ function renderQuestions() {
       <div class="question">
         <p>${q.question}</p>
         ${renderOptions(q.options, index)}
+        <br/>
+        <hr>
       </div>
     `;
     quizContainer.innerHTML += questionHTML;
