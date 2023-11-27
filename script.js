@@ -226,6 +226,8 @@ const resultContainer = document.getElementById("result-container");
 const submitBtn = document.getElementById("submit-btn");
 const restartBtn = document.getElementById("restart-btn");
 const points = document.getElementById("points");
+const infoBtn = document.getElementById("info-btn");
+const infoText = document.getElementById("info-text");
 
 // Function to render questions in the HTML
 function renderQuestions() {
@@ -291,6 +293,17 @@ submitBtn.addEventListener("click", () => {
 // Event listener for the restart button
 restartBtn.addEventListener("click", () => {
   location.reload();
+});
+
+// Event listener for the info button
+infoBtn.addEventListener("click", () => {
+  if (infoText.style.display === "none") {
+    infoText.style.display = "block";
+  }else{
+    infoText.style.display = "none";
+  }
+
+  
 });
 
 // Call the function to render questions
