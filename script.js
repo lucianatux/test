@@ -184,7 +184,7 @@ function renderQuestions() {
 function renderOptions(options, questionIndex) {
   let optionsHTML = "";
   for (const [key, value] of Object.entries(options)) {
-    optionsHTML += `<label><input type="radio" name="q${questionIndex}" value="${key}">${value}</label><br>`;
+    optionsHTML += `<label><input type="checkbox" name="q${questionIndex}" value="${key}">${value}</label><br>`;
   }
   return optionsHTML;
 }
@@ -194,11 +194,11 @@ function calculateResult() {
   const answers = {};
 
   questions.forEach((q, index) => {
-    const selectedAnswer = document.querySelector(`input[name="q${index}"]:checked`);
-    if (selectedAnswer) {
+    const selectedAnswers = document.querySelectorAll(`input[name="q${index}"]:checked`);
+    selectedAnswers.forEach(selectedAnswer => {
       const questionKey = selectedAnswer.value;
       answers[questionKey] = (answers[questionKey] || 0) + 1;
-    }
+    });
   });
 
   const maxAnswerCount = Math.max(...Object.values(answers));
