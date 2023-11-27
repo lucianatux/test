@@ -224,6 +224,7 @@ const result = {
 const quizContainer = document.getElementById("quiz-container");
 const resultContainer = document.getElementById("result-container");
 const submitBtn = document.getElementById("submit-btn");
+const restartBtn = document.getElementById("restart-btn");
 const points = document.getElementById("points");
 
 // Function to render questions in the HTML
@@ -285,6 +286,11 @@ function calculateResult() {
 // Event listener for the submit button
 submitBtn.addEventListener("click", () => {
   calculateResult();
+});
+
+// Event listener for the restart button
+restartBtn.addEventListener("click", () => {
+  location.reload();
 });
 
 // Call the function to render questions
